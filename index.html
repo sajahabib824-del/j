@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Abb Particle System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+        <p>Memuat Particle System...</p>
+    </div>
+
+    <!-- Three.js Canvas Container -->
+    <div id="canvas-container"></div>
+
+    <!-- Logo -->
+    <div class="logo">
+        <div class="abb">Abb</div>
+        <div class="particle">Particle</div>
+    </div>
+
+    <!-- Menu Button -->
+    <div class="menu-btn" id="menuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Menu Dropdown -->
+    <div class="menu-dropdown" id="menuDropdown">
+        <div class="menu-item" onclick="showTutorial()">
+            <span>📖</span> Tutorial
+        </div>
+        <div class="menu-item" onclick="toggleSubmenu('shapesSubmenu')">
+            <span>🎨</span> Bentuk
+        </div>
+        <div class="submenu" id="shapesSubmenu">
+            <div class="submenu-item" onclick="forceShape('fist')">
+                <span class="shape-preview shape-saturn">🪐</span> Saturnus (Kepal)
+            </div>
+            <div class="submenu-item" onclick="forceShape('open')">
+                <span class="shape-preview shape-open">✋</span> Buka Telapak
+            </div>
+            <div class="submenu-item" onclick="forceShape('peace')">
+                <span class="shape-preview shape-text">✌️</span> Dua Jari (Teks)
+            </div>
+            <div class="submenu-item" onclick="forceShape('metal')">
+                <span class="shape-preview shape-heart">🤘</span> Metal (Hati)
+            </div>
+        </div>
+        <div class="menu-item" onclick="showTextEdit()">
+            <span>✏️</span> Edit Teks
+        </div>
+    </div>
+
+    <!-- Camera Preview -->
+    <div class="camera-preview">
+        <video id="inputVideo" playsinline></video>
+        <div class="label">ANDRIAN VISION</div>
+    </div>
+
+    <!-- Status -->
+    <div class="status" id="status">Menunggu tangan...</div>
+
+    <!-- Tutorial Modal -->
+    <div class="modal" id="tutorialModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('tutorialModal')">×</button>
+            <h2>🎮 Tutorial Gesture</h2>
+
+            <div class="tutorial-item">
+                <div class="tutorial-icon">✊</div>
+                <div class="tutorial-text">
+                    <h3>Tangan Mengepal</h3>
+                    <p>Tahan kepalan tangan untuk membuat bentuk planet Saturnus 3D yang berputar</p>
+                </div>
+            </div>
+
+            <div class="tutorial-item">
+                <div class="tutorial-icon">✋</div>
+                <div class="tutorial-text">
+                    <h3>Telapak Terbuka</h3>
+                    <p>Buka telapak tangan untuk membuat partikel berkumpul di tengah dengan partikel lain berlarian</p>
+                </div>
+            </div>
+
+            <div class="tutorial-item">
+                <div class="tutorial-icon">✌️</div>
+                <div class="tutorial-text">
+                    <h3>Dua Jari (Peace)</h3>
+                    <p>Angkat jari telunjuk dan tengah untuk menampilkan teks yang dapat diedit</p>
+                </div>
+            </div>
+
+            <div class="tutorial-item">
+                <div class="tutorial-icon">🤘</div>
+                <div class="tutorial-text">
+                    <h3>Metal / Rock</h3>
+                    <p>Bentuk tangan metal untuk membuat hati 3D yang berdetak</p>
+                </div>
+            </div>
+
+            <div class="tutorial-item">
+                <div class="tutorial-icon">👋</div>
+                <div class="tutorial-text">
+                    <h3>Gerakan Tangan</h3>
+                    <p>Gerakkan tangan ke kiri, kanan, atas, atau bawah untuk menggerakkan bentuk partikel</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Text Edit Modal -->
+    <div class="modal text-edit-modal" id="textEditModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('textEditModal')">×</button>
+            <h2>✏️ Edit Teks</h2>
+
+            <div class="input-group">
+                <label>Teks yang ditampilkan saat gesture dua jari:</label>
+                <input type="text" id="textInput" value="I LOVE U" maxlength="20">
+            </div>
+
+            <button class="btn-primary" onclick="saveText()">Simpan Perubahan</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+</html>
